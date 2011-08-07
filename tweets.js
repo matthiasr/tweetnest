@@ -84,7 +84,7 @@ if(window.twttr && window.twttr.anywhere){
 		T(".tweet a.user").hovercards({
 			username: function(node){ return node.href.match(/[a-zA-Z0-9_]+$/)[0] }
 		})
-		T(".tweet a.rt, #author h2 a").hovercards({ 
+		T(".tweet a.rt, #author h2 a").hovercards({
 			username: function(node){ return node.parentNode.href.match(/[a-zA-Z0-9_]+$/)[0] }
 		})
 	})

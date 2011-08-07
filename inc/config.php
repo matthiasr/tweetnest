@@ -21,7 +21,7 @@
 		
 		// OPTIONAL -------------------------------------------
 		// If you want to access your maintenance PHP files by HTTP, specify an admin password.
-		'maintenance_http_password' => '', 
+		'maintenance_http_password' => '',
 		// UNLESS YOU HAVE SSL, IT WILL BE SENT IN CLEAR TEXT, SO MAYBE NOT YOUR TWITTER (or anything else) PASSWORD!
 		
 		// If you want Twitter @Anywhere hovercards on your archive, put your @Anywhere API key here

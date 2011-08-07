@@ -27,7 +27,7 @@
 		$results = $search->query(
 			$_GET['q'],
 			$sort,
-			($month 
+			($month
 				? " AND YEAR(FROM_UNIXTIME(`time`" . DB_OFFSET . ")) = '" . s($_GET['y']) . "' AND MONTH(FROM_UNIXTIME(`time`" . DB_OFFSET . ")) = '" . s($m) . "'"
 				: ""
 			)

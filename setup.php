@@ -519,7 +519,7 @@
 	<div id="container">
 		<a id="pongsk" href="http://pongsocket.com/" target="_blank" title="Open pongsocket.com in a new window">pongsocket</a>
 		<h1>Set up <strong>Tweet Nest</strong></h1>
-<?php if($post && $success && !$e){ 
+<?php if($post && $success && !$e){
 	$dPath = s(rtrim($sPath, "/"));
 ?>
 		<div id="content">

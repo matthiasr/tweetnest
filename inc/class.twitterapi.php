@@ -99,7 +99,7 @@
 		}
 		
 		public function transformTweet($tweet){ // API tweet object -> DB tweet array
-			$t = array(); $e = array(); 
+			$t = array(); $e = array();
 			foreach(get_object_vars($tweet) as $k => $v){
 				if(array_key_exists($k, $this->dbMap)){
 					$key = $this->dbMap[$k];

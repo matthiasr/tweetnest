@@ -8,7 +8,7 @@
 	require_once "mpreheader.php";
 	$p = "";
 	// The below is not important, so errors surpressed
-	$f = @fopen("loadlog.txt", "a"); @fwrite($f, "Attempted load " . date("r") . "\n"); @fclose($f); 
+	$f = @fopen("loadlog.txt", "a"); @fwrite($f, "Attempted load " . date("r") . "\n"); @fclose($f);
 	
 	$pageTitle = "Loading tweets";
 	require "mheader.php";
@@ -118,8 +118,8 @@
 				if(is_string($te)){ $te = @unserialize($tweet['extra']); }
 				if(is_array($te)){
 					// Because retweets might get cut off otherwise
-					$text = (array_key_exists("rt", $te) && !empty($te['rt']) && !empty($te['rt']['screenname']) && !empty($te['rt']['text'])) 
-						? "RT @" . $te['rt']['screenname'] . ": " . $te['rt']['text'] 
+					$text = (array_key_exists("rt", $te) && !empty($te['rt']) && !empty($te['rt']['screenname']) && !empty($te['rt']['text']))
+						? "RT @" . $te['rt']['screenname'] . ": " . $te['rt']['text']
 						: $tweet['text'];
 				}
 				$search->index($db->insertID(), $text);

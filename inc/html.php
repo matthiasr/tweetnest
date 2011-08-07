@@ -56,7 +56,7 @@
 			$s .= $y . "<li" . ($c ? " class=\"" . $c . "\"" : "") . ">" .
 			"<a href=\"" . ($cc > 0 ? s($pURL) : $path . "/" . s($m['y']) . "/" . s(pad($m['m']))) . "\">" .
 			"<span class=\"m\">" . date("F Y", mktime(1,0,0,$m['m'],1,$m['y'])) . "</span>" .
-			"<span class=\"n\"> " . number_format($m['c']) . ($cc > 0 ? " <strong>(" . number_format($cc) . ")</strong>" : "") . 
+			"<span class=\"n\"> " . number_format($m['c']) . ($cc > 0 ? " <strong>(" . number_format($cc) . ")</strong>" : "") .
 			"</span><span class=\"p\" style=\"width:" . round((($m['c']/$max)*100), 2) . "%\"></span></a></li>\n";
 		}
 		$s .= $y . "<li class=\"meta\">" . number_format($total) . " total tweets" . ($amount > 0 ? " <!-- approx. " . round(number_format($total / $amount), 2) . " monthly -->" : "") . "</li>\n" . $x . "</ul>\n";
@@ -93,16 +93,16 @@
 				(!empty($d['c2']) ? ", " . s($d['c2']) . " retweet" . ($d['c2'] == 1 ? "" : "s") : "") .
 				"\" href=\"" . $path . "/" . s($year) . "/" . s(pad($month)) . "/" . s(pad($i+1)) . "\">" .
 				"<span class=\"p\" style=\"height:" . round((($d['total']/$max)*250), 2) . "px\">" .
-				"<span class=\"n\">" . ($d['total'] != 1 ? number_format($d['total']) : "") . "</span>" . 
-				(!empty($d['c1']) ? "<span class=\"r\" style=\"height:" . round((($d['c1']/$max)*250), 2) . "px\"></span>" : "") . 
-				(!empty($d['c2']) ? "<span class=\"rt\" style=\"height:" . round((($d['c2']/$max)*250), 2) . "px\"></span>" : "") . 
-				"</span><span class=\"m" . (($wd == 0 || $wd == 6) ? " mm" : "") . ($today ? " ms" : "") . "\">" . 
-				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") . 
+				"<span class=\"n\">" . ($d['total'] != 1 ? number_format($d['total']) : "") . "</span>" .
+				(!empty($d['c1']) ? "<span class=\"r\" style=\"height:" . round((($d['c1']/$max)*250), 2) . "px\"></span>" : "") .
+				(!empty($d['c2']) ? "<span class=\"rt\" style=\"height:" . round((($d['c2']/$max)*250), 2) . "px\"></span>" : "") .
+				"</span><span class=\"m" . (($wd == 0 || $wd == 6) ? " mm" : "") . ($today ? " ms" : "") . "\">" .
+				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") .
 				"</span></a></div>\n";
 			} else {
 				$s .= $y . "<div class=\"d\"><a href=\"" . $path . "/" . s($year) . "/" . s(pad($month)) . "/" . s(pad($i+1)) . "\">" .
 				"<span class=\"z\">0</span><span class=\"m" . (($wd == 0 || $wd == 6) ? " mm" : "") . ($today ? " ms" : "") . "\">" .
-				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") . 
+				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") .
 				"</span></a></div>\n";
 			}
 			$wd = ($wd == 6) ? 0 : $wd + 1;
@@ -123,16 +123,16 @@
 		$rt = (array_key_exists("rt", $tweetextra) && !empty($tweetextra['rt']));
 		$t  = str_repeat("\t", $tabs);
 		if($rt){ $retweet = $tweetextra['rt']; }
-		$d  =   $t . "<div id=\"tweet-" . s($tweet['tweetid']) . "\" class=\"tweet" . (($tweet['type'] == 1) ? " reply" : "") . (($tweet['type'] == 2) ? " retweet" : "") . "\">\n" . 
+		$d  =   $t . "<div id=\"tweet-" . s($tweet['tweetid']) . "\" class=\"tweet" . (($tweet['type'] == 1) ? " reply" : "") . (($tweet['type'] == 2) ? " retweet" : "") . "\">\n" .
 				($tweet['favorite'] ? $t . "\t<div class=\"fav\" title=\"A personal favorite\"><span>(A personal favorite)</span></div>\n" : "") .
-				$t . "\t<p class=\"text\">" . ($rt ? "<a class=\"rt\" href=\"http://twitter.com/" . $retweet['screenname'] . "\"><strong>" . $retweet['screenname'] . "</strong></a> " : "") . 
+				$t . "\t<p class=\"text\">" . ($rt ? "<a class=\"rt\" href=\"http://twitter.com/" . $retweet['screenname'] . "\"><strong>" . $retweet['screenname'] . "</strong></a> " : "") .
 				nl2br(p(highlightQuery(linkifyTweet(
 					s(stupefyRaw($rt ? $twitterApi->entityDecode($retweet['text']) : $tweet['text']), ENT_NOQUOTES)
-				), $tweet), 3)) . "</p>\n" . 
-				$t . "\t<p class=\"meta\">\n" . $t . "\t\t<a href=\"http://twitter.com/" . s($rt ? $retweet['screenname'] : $tweet['screenname']) . "/statuses/" . s($rt ? $retweet['tweetid'] : $tweet['tweetid']) . "\" class=\"permalink\">" . date("g:i A, M jS, Y", ($rt ? $retweet['time'] : $tweet['time'])) . "</a>\n" . 
+				), $tweet), 3)) . "</p>\n" .
+				$t . "\t<p class=\"meta\">\n" . $t . "\t\t<a href=\"http://twitter.com/" . s($rt ? $retweet['screenname'] : $tweet['screenname']) . "/statuses/" . s($rt ? $retweet['tweetid'] : $tweet['tweetid']) . "\" class=\"permalink\">" . date("g:i A, M jS, Y", ($rt ? $retweet['time'] : $tweet['time'])) . "</a>\n" .
 				$t . "\t\t<span class=\"via\">via " . ($rt ? $retweet['source'] : $tweet['source']) . "</span>\n" .
-				($rt ? $t . "\t\t<span class=\"rted\">(retweeted on " . date("g:i A, M jS, Y", $tweet['time']) . " <span class=\"via\">via " . $tweet['source'] . "</span>)</span>\n" : "") . 
-				((!$rt && $tweetextra && @!empty($tweetextra['in_reply_to_status_id'])) ? $t . "\t\t<a class=\"replyto\" href=\"http://twitter.com/" . s($tweetextra['in_reply_to_screen_name']) . "/statuses/" . s($tweetextra['in_reply_to_status_id']) . "\">in reply to " . s($tweetextra['in_reply_to_screen_name']) . "</a>\n" : "") . 
+				($rt ? $t . "\t\t<span class=\"rted\">(retweeted on " . date("g:i A, M jS, Y", $tweet['time']) . " <span class=\"via\">via " . $tweet['source'] . "</span>)</span>\n" : "") .
+				((!$rt && $tweetextra && @!empty($tweetextra['in_reply_to_status_id'])) ? $t . "\t\t<a class=\"replyto\" href=\"http://twitter.com/" . s($tweetextra['in_reply_to_screen_name']) . "/statuses/" . s($tweetextra['in_reply_to_status_id']) . "\">in reply to " . s($tweetextra['in_reply_to_screen_name']) . "</a>\n" : "") .
 				(($tweetplace && @$tweetplace->full_name) ? "\t\t<span class=\"place\">from <a href=\"http://maps.google.com/?q=" . urlencode($tweetplace->full_name) . "\">" . s($tweetplace->full_name) . "</a></span>" : "") .
 				$t . "\t</p>\n" . $t . "</div>\n";
 		$dd = hook("displayTweet", array($d, $tweet));
@@ -178,16 +178,16 @@
 				$nTQ      = $db->query($half . " > '" . $db->s($last)  . "' ORDER BY `time` ASC LIMIT 1");
 				if($db->numRows($pTQ) > 0){
 					$prevTweet = $db->fetch($pTQ);
-					$nextprev .= "<a class=\"prev\" href=\"" . $path . "/" . 
-						s($prevTweet['year']) . "/" . s(pad($prevTweet['month'])) . "/" . s(pad($prevTweet['day'])) . 
-						"\">&larr; <span>" . date("F jS", mktime(4,0,0, $prevTweet['month'], $prevTweet['day'], $prevTweet['year'])) . 
+					$nextprev .= "<a class=\"prev\" href=\"" . $path . "/" .
+						s($prevTweet['year']) . "/" . s(pad($prevTweet['month'])) . "/" . s(pad($prevTweet['day'])) .
+						"\">&larr; <span>" . date("F jS", mktime(4,0,0, $prevTweet['month'], $prevTweet['day'], $prevTweet['year'])) .
 						"</span></a> ";
 				}
 				if($db->numRows($nTQ) > 0){
 					$nextTweet = $db->fetch($nTQ);
-					$nextprev .= "<a class=\"next\" href=\"" . $path . "/" . 
-						s($nextTweet['year']) . "/" . s(pad($nextTweet['month'])) . "/" . s(pad($nextTweet['day'])) . 
-						"\"><span>" . date("F jS", mktime(4,0,0, $nextTweet['month'], $nextTweet['day'], $nextTweet['year'])) . 
+					$nextprev .= "<a class=\"next\" href=\"" . $path . "/" .
+						s($nextTweet['year']) . "/" . s(pad($nextTweet['month'])) . "/" . s(pad($nextTweet['day'])) .
+						"\"><span>" . date("F jS", mktime(4,0,0, $nextTweet['month'], $nextTweet['day'], $nextTweet['year'])) .
 						"</span> &rarr;</a>";
 				}
 				if($nextprev){
@@ -373,18 +373,18 @@
 	
 	// Altered "Days in Month" function taken from:
 		// PHP Calendar Class Version 1.4 (5th March 2001)
-		//  
+		//
 		// Copyright David Wilkinson 2000 - 2001. All Rights reserved.
-		// 
+		//
 		// This software may be used, modified and distributed freely
-		// providing this copyright notice remains intact at the head 
+		// providing this copyright notice remains intact at the head
 		// of the file.
 		//
 		// This software is freeware. The author accepts no liability for
-		// any loss or damages whatsoever incurred directly or indirectly 
-		// from the use of this script. The author of this software makes 
-		// no claims as to its fitness for any purpose whatsoever. If you 
-		// wish to use this software you should first satisfy yourself that 
+		// any loss or damages whatsoever incurred directly or indirectly
+		// from the use of this script. The author of this software makes
+		// no claims as to its fitness for any purpose whatsoever. If you
+		// wish to use this software you should first satisfy yourself that
 		// it meets your requirements.
 		//
 		// URL:   http://www.cascade.org.uk/software/php/calendar/

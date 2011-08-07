@@ -70,7 +70,7 @@
 				$ds    = explode("\n", $d, 2);
 				$imgd  = ""; $i = 1; $is = array();
 				foreach($tweetextra['imgs'] as $link => $img){
-					$imgd .= 
+					$imgd .=
 						$x . "\t<a class=\"pic pic-" . s($i) . "\" href=\"" . s($link) . "\">" .
 						"<img src=\"" . s($img) . "\" alt=\"\" /></a>\n";
 					$is[$link] = $i++;
@@ -78,7 +78,7 @@
 				foreach($is as $link => $i){
 					$ds[1] = preg_replace(
 						"/class=\"([^\"]*)\" href=\"" . preg_quote(s($link), "/") . "\"/",
-						"class=\"$1 picl picl-" . s($i) . "\" href=\"" . s($link) . "\"", 
+						"class=\"$1 picl picl-" . s($i) . "\" href=\"" . s($link) . "\"",
 						$ds[1]
 					);
 				}
